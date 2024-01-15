@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>First one</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/1041/1041916.png">
   <style>
     #message {
       position: fixed;
@@ -17,10 +18,13 @@
 
     #btn {
       position: fixed;
-      bottom: 20px;
+      bottom: 22px;
       right: 20px;
       height: 50px;
       width: 15%;
+      border-radius: 10px;
+      background-color: brown;
+      font-size: 20px;
     }
     #mes{
       list-style-type:none;
@@ -33,25 +37,51 @@
       position: relative;
       height: 80vh;
      overflow: scroll;
+     background-image: url(b.jpg);
+     background-repeat: no-repeat, repeat;
+     background-size: cover;
     }
     #filedata{
       text-align: center; 
     }
-    /* .fileUplode{
+     .fileUplode{
       position: absolute;
-      bottom: 20px;
-      width: 20%;
+      bottom: 80px;
+      width: 60%;
       height: 50px;
       text-align: center;
       font-size: 30px;
-    } */
+    } 
 
     .a{
      margin-left: 300px;
      color:red;
     }
+   
+    #mes li{
+      min-height: 50px;
+        max-width: 300px;
+        background-color: aliceblue;
+        
+        border-radius: 50px;
+      text-align: center;
+      font-size: 40px;
+    }
+  #message{
+    border-radius: 50px;
+    background-color:khaki;
+  }
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 1000px) {
+      .content{
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      width:100%;
+      margin:10px auto 20px auto;
+      position: relative;
+      height: 80vh;
+     overflow: scroll;
+     background-image: url(b.jpg);
+    }
       .a{
      margin-left: 100px;
      color:blue;
@@ -68,11 +98,15 @@
     <input type="text" id="message" placeholder="Enter the message here" required>
     <input type="submit" id="btn" value="Send"><br />
     <input type="file" class="fileUplode" id="fileInput">
-
   </form>
  <div class="content">
-  <ul id="mes"></ul>
+  <ul id="mes">
+   
+  </ul>
   <a href="#" id="filedata" ></a>
+  <div class="v">
+    
+  </div>
 </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
@@ -99,10 +133,10 @@
       let li = document.createElement("li");
       
       if (message[1] == socket.id) {
-        li.textContent = `${name} --> :          ` + message[0];
+        li.textContent = `${name} :          ` + message[0];
 li.classList.add("a")
       } else {
-        li.textContent = `${message[2]} --> :   ` + message[0]
+        li.textContent = `${message[2]} :   ` + message[0]
       }
       messagesList.appendChild(li);
     });
@@ -130,6 +164,7 @@ li.classList.add("a")
     });
 
     // Handle incoming files and messages from other users
+    
     socket.on('file', (data) => {
       // Display the file for download
       let fileDisplayArea = document.getElementById("filedata")
