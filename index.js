@@ -9,7 +9,7 @@ app.use(cors());
 const server = http.createServer(app)
 const io = socketIO(server);
 
-const port = 3000
+const port = 80
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/index.html")
@@ -43,6 +43,6 @@ io.on('connection',(socket)=>{
 })
 
 
-server.listen(3000,()=>{
+server.listen(port,()=>{
     console.log(`server is atatred at port ${port}`)
 })
