@@ -4,91 +4,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>First one</title>
+  <title>chaitanya App</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/1041/1041916.png">
   <style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #f0f2f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     #message {
-      position: fixed;
-      bottom: 20px;
-     width: 80%;
-      height: 50px;
-      text-align: center;
-      font-size: 30px;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: calc(100% - 130px);
+        height: 50px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        font-size: 16px;
+        outline: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     #btn {
-      position: fixed;
-      bottom: 22px;
-      right: 20px;
-      height: 50px;
-      width: 15%;
-      border-radius: 10px;
-      background-color: brown;
-      font-size: 20px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 90px;
+        height: 50px;
+        border: none;
+        border-radius: 25px;
+        background-color: #0084ff;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
     }
-    #mes{
-      list-style-type:none;
-      font-size: 20px;
-    } 
-    .content{
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-      width:40%;
-      margin:10px auto 20px auto;
-      position: relative;
-      height: 80vh;
-     overflow: scroll;
-     background-image: url(b.jpg);
-     background-repeat: no-repeat, repeat;
-     background-size: cover;
-    }
-    #filedata{
-      text-align: center; 
-    }
-     .fileUplode{
-      position: absolute;
-      bottom: 80px;
-      width: 60%;
-      height: 50px;
-      text-align: center;
-      font-size: 30px;
-    } 
 
-    .a{
-     margin-left: 300px;
-     color:red;
+    #btn:hover {
+        background-color: #0066cc;
     }
-   
-    #mes li{
-      min-height: 40px;
-        max-width: 300px;
-        background-color: aliceblue;
-        margin-top: 20px;
-        border-radius: 50px;
-      text-align: center;
-      font-size: 25px;
-    }
-  #message{
-    border-radius: 50px;
-    background-color:khaki;
-  }
 
-    @media only screen and (max-width: 1000px) {
-      .content{
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-      width:100%;
-      margin:10px auto 20px auto;
-      position: relative;
-      height: 75vh;
-     overflow: scroll;
-     position: absolute;
-     top: 0px;
-     background-image: url(b.jpg);
+    .content {
+        background: url(b.jpg) center/cover fixed;
+        width: 100%;
+        max-width: 800px;
+        margin: 20px auto;
+        height: calc(100vh - 120px);
+        border-radius: 15px;
+        overflow-y: auto;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        padding: 20px;
     }
-      .a{
-     margin-left: 100px;
-     color:blue;
+
+    #mes {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
-}
+
+    #mes li {
+        max-width: 70%;
+        padding: 12px 20px;
+        border-radius: 20px;
+        font-size: 16px;
+        word-break: break-word;
+        animation: fadeIn 0.3s ease;
+        position: relative;
+    }
+
+    #mes li:not(.user-message) {
+        background: rgba(255,255,255,0.9);
+        align-self: flex-start;
+    }
+
+    .user-message {
+        background: #0084ff;
+        color: white;
+        align-self: flex-end;
+    }
+
+    .file-message {
+        background: #e9ecef;
+        padding: 10px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .fileUplode {
+        position: fixed;
+        bottom: 80px;
+        left: 20px;
+        width: calc(100% - 40px);
+        background: white;
+        padding: 10px;
+        border-radius: 25px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #filedata {
+        display: block;
+        color: #0084ff;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 10px;
+        transition: background 0.3s;
+    }
+
+    #filedata:hover {
+        background: rgba(0,132,255,0.1);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .content {
+            margin: 0;
+            height: calc(100vh - 160px);
+            border-radius: 0;
+        }
+
+        #message {
+            bottom: 70px;
+            width: calc(100% - 110px);
+        }
+
+        #btn {
+            bottom: 70px;
+        }
+
+        .fileUplode {
+            bottom: 130px;
+        }
+
+        #mes li {
+            max-width: 85%;
+            font-size: 14px;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        #message {
+            font-size: 14px;
+        }
+
+        #btn {
+            width: 70px;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 10px;
+        }
+    }
+</style>
   </style>
 </head>
 <script>  var name = prompt("enter the name : ")</script>
